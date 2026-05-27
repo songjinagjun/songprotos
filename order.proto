@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "./";
+
+message OrderAddReq {
+  int64  uid =1; //用户ID
+  string  StatusAddress =2;//起点
+  string    SendAddress=3; //终点
+  int64 type =4; //订单类型
+  float price=5;
+  float money=6;
+}
+message OrderAddResp {
+  string msg = 1;
+}
+message PlaceOrderReq {
+  string no =1;//订单编号
+}
+message PlaceOrderResp {
+  string msg = 1;
+}
+
+
+service Order {
+  rpc OrderAdd(OrderAddReq) returns (OrderAddResp);
+  rpc PlaceOrder(PlaceOrderReq) returns (PlaceOrderResp);
+}
